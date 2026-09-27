@@ -1,0 +1,286 @@
+/* Aset dan warna mengikuti LandingPage-SPMB.png. Semua file tersedia lokal. */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("assets/design/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+:root {
+  --gray: #efefef;
+  --orange: #ff8c00;
+  --yellow: #ffc400;
+}
+
+body { font-family: "Plus Jakarta Sans", sans-serif; }
+.hero h1 { font-weight: 700; font-size: 56px; }
+.hero-description { font-size: 16px; line-height: 1.28; }
+.hero-actions { gap: 25px; }
+.hero-actions .button { padding-inline: 37px; }
+.brand { font-size: 22px; }
+.brand strong { position: relative; }
+.brand:after { display: none; }
+.brand strong:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 158px;
+  height: 158px;
+  left: 50%;
+  top: -105px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(35deg, var(--orange) 25%, var(--yellow));
+}
+
+/* Ikon putih memakai kotak oranye seperti prototype. */
+.icon-tile .asset-icon { width: 54px; height: 54px; object-fit: contain; }
+.program-card .icon-tile .asset-icon { width: 46px; height: 46px; }
+.facility-card > .asset-icon { width: 39px; height: 39px; margin: 0 auto; object-fit: contain; }
+.program-card { padding-inline: 32px; }
+.program-card h3 { font-size: 19px; }
+.program-card p { font-size: 15px; line-height: 1.22; }
+.facility-card h3 { min-height: 42px; font-size: 19px; }
+.facility-stat { font-size: 18px; margin: 12px 0 20px; }
+.facility-card > p:last-child { font-size: 17px; }
+
+/* Ornamen asli di atas bidang putih dan abu-abu sesuai prototype. */
+.bubbles:before { background: url("assets/design/Ellipse Kuning.png") center / contain no-repeat; }
+.bubbles:after { background: url("assets/design/Ellipse Oren.png") center / contain no-repeat; }
+.line-spark { width: 127px; height: 131px; top: 10px; right: 3%; transform: none; }
+.program-arrow { width: 120px; height: 128px; top: 660px; left: -5px; transform: none; text-shadow: none; }
+.pills { width: 100px; height: 109px; transform: none; right: 3%; bottom: 87px; }
+.orbit { width: 286px; height: 453px; border: 0; border-radius: 0; transform: none; left: 0; top: -160px; }
+.timeline-section { overflow-x: clip; overflow-y: visible; }
+.timeline-spark { width: 74px; height: 85px; right: 0; transform: none; }
+.footer-spark { position: absolute; right: 2px; bottom: 0; width: 74px; height: 85px; }
+.faq details:before { content: none; }
+.faq-panel { overflow: hidden; }
+.faq-triangle { position: absolute; width: 72px; height: 72px; left: -94px; top: 28px; pointer-events: none; background: url("assets/design/Triangle(Jurusan Section).png") center / contain no-repeat; transform: rotate(50deg); }
+.chevron { width: 33px; height: 33px; border: 0; transform: none; background: url("assets/design/Dropdown FAQ.png") center / contain no-repeat; }
+.faq details[open] .chevron { transform: rotate(180deg); }
+.cta { background: radial-gradient(ellipse at center, #ff9b23 0%, #ffaf4d 90%); }
+
+/* Tujuh posisi tetap, lalu poster bergantian mengitari susunan tersebut. */
+.poster-gallery {
+  position: relative;
+  width: min(100%, 630px);
+  aspect-ratio: 630 / 690;
+  margin-top: -33px;
+  isolation: isolate;
+}
+.poster-stage { position: absolute; inset: 0; }
+.poster {
+  position: absolute;
+  width: 36.508%;
+  height: auto;
+  aspect-ratio: 230 / 288;
+  object-fit: contain;
+  left: calc(var(--poster-left) + 1.5%);
+  top: var(--poster-top);
+  z-index: var(--poster-depth);
+  transition: left 1100ms cubic-bezier(.4, 0, .2, 1), top 700ms cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+}
+.poster-shadow {
+  position: absolute;
+  width: 83%;
+  height: 13%;
+  left: 10%;
+  top: 84%;
+  z-index: -1;
+  background: radial-gradient(ellipse, #0009 0%, #0004 28%, #0001 52%, transparent 72%);
+  filter: blur(7px);
+}
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* Setiap segmen terisi dan menyusut sesuai posisi scroll. */
+.timeline-rail { --rail-progress: 0; --rail-start: 107px; --rail-end: -21px; --rail-left: 21px; }
+.timeline-rail:before {
+  left: calc(var(--rail-left) - 7px);
+  bottom: calc(var(--rail-end) - 7px);
+  width: 14px;
+  height: 14px;
+  border: 2px solid #777;
+  border-radius: 50%;
+  background: white;
+  transform: none;
+  z-index: 3;
+}
+.timeline-fill {
+  position: absolute;
+  left: var(--rail-left);
+  top: var(--rail-start);
+  bottom: var(--rail-end);
+  width: 3px;
+  margin-left: -1px;
+  background: var(--orange);
+  transform: scaleY(var(--rail-progress));
+  transform-origin: top;
+  z-index: 1;
+  pointer-events: none;
+}
+.timeline-cursor {
+  position: absolute;
+  left: calc(var(--rail-left) - 4px);
+  top: calc(var(--rail-start) + (100% - var(--rail-start) - var(--rail-end)) * var(--rail-progress));
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 5px #ff8c0026;
+  transform: translateY(-50%);
+  opacity: 0;
+  z-index: 2;
+}
+.timeline-rail.is-tracking .timeline-cursor { opacity: 1; }
+.timeline-rail.is-reached > span { border-color: var(--orange); background: #fff5e7; }
+.timeline-rail.is-complete:before { border-color: var(--orange); background: #fff5e7; }
+
+@media (min-width: 801px) and (max-width: 1150px) {
+  .hero h1 { font-size: 44px; }
+  .hero-description { font-size: 14px; }
+  .hero-actions .button { padding-inline: 25px; }
+  .brand { font-size: 19px; }
+  .brand strong:before { width: 142px; height: 142px; top: -92px; }
+  .program-card { padding-inline: 22px; }
+  .program-card h3 { font-size: 17px; }
+  .program-card p { font-size: 14px; }
+  .facility-card h3, .facility-stat { font-size: 17px; }
+  .facility-card > p:last-child { font-size: 15px; }
+}
+
+@media (max-width: 800px) {
+  .hero h1 { font-size: clamp(33px, 7vw, 53px); }
+  .hero-description { font-size: 14px; line-height: 1.5; }
+  .hero-actions { gap: 15px; }
+  .hero-actions .button { padding-inline: 22px; }
+  .brand { font-size: 16px; }
+  .brand strong:before { width: 123px; height: 110px; top: -70px; }
+  .poster-gallery { width: min(100%, 520px); margin: 20px auto 10px; }
+  .icon-tile .asset-icon { width: 41px; height: 41px; }
+  .program-card .icon-tile .asset-icon { width: 36px; height: 36px; }
+  .program-card { padding-inline: 18px; }
+  .program-card h3 { font-size: 15px; }
+  .program-card p { font-size: 13px; line-height: 1.4; }
+  .facility-card > .asset-icon { width: 31px; height: 31px; }
+  .facility-card h3 { font-size: 16px; min-height: 32px; }
+  .facility-stat { font-size: 16px; margin: 10px 0 15px; }
+  .facility-card > p:last-child { font-size: 14px; }
+  .line-spark { width: 65px; height: auto; right: 0; top: 5px; }
+  .pills { width: 70px; height: auto; bottom: 30px; scale: 1; }
+  .orbit { width: 143px; height: auto; scale: 1; left: 0; top: -65px; }
+  .timeline-spark { width: 42px; height: auto; right: 0; }
+  .footer-spark { width: 42px; height: auto; }
+  .chevron { width: 22px; height: 22px; }
+  .timeline-rail { --rail-start: 65px; --rail-end: -12px; --rail-left: 13px; }
+}
+
+@media (max-width: 360px) {
+  .hero-actions { gap: 10px; }
+  .hero-actions .button { padding-inline: 17px; }
+  .program-card { padding-inline: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poster { transition: none; }
+}
+
+/* Proporsi lebih penuh, dengan ruang tepi yang tetap nyaman di layar kecil. */
+html { scroll-padding-top: 120px; }
+.container { width: min(1320px, calc(100% - 64px)); }
+.hero { width: min(1440px, calc(100% - clamp(80px, 8vw, 144px))); padding-left: 0; height: auto; min-height: 800px; padding-bottom: 60px; grid-template-columns: 1fr 1.08fr; }
+.hero-copy { min-width: 0; }
+.hero h1 { font-size: clamp(48px, 4.6vw, 64px); }
+.hero-description { font-size: 18px; line-height: 1.28; max-width: 550px; margin-top: 20px; }
+.hero .eyebrow { margin-bottom: 30px; }
+.hero-actions { margin-top: 25px; }
+.poster-gallery { width: 98%; justify-self: end; }
+.digital .section-heading { position: relative; }
+/* Bubble mengikuti area subjudul, bukan tinggi hero di atasnya. */
+.digital .bubbles-right { top: 40px; right: -10px; }
+.site-header { height: 108px; padding-inline: 28px; }
+.brand { font-size: 25px; }
+.brand strong:before { width: 178px; height: 99px; top: -47px; border-radius: 0; background: url("assets/design/Ellipse In Navbar.png") center / contain no-repeat; }
+.nav-links a { font-size: 17px; }
+.nav-links { padding: 17px 28px; gap: 28px; }
+.login-button { font-size: 20px; min-height: 50px; }
+.section-heading h2 { font-size: 52px; }
+.section-heading p { font-size: 26px; line-height: 1.35; }
+.digital-card { padding-inline: 16px; }
+.digital-card h3 { font-size: 22px; }
+.digital-card p { font-size: 17px; line-height: 1.4; }
+.program-card h3 { font-size: 21px; line-height: 1.25; }
+.program-card p { font-size: 17px; line-height: 1.4; }
+.facility-card h3 { font-size: 21px; }
+.facility-stat { font-size: 20px; }
+.facility-card > p:last-child { font-size: 18px; line-height: 1.4; }
+.timeline { margin-inline: 80px 12px; }
+.faq-list { width: min(820px, 78%); }
+.closing { padding-inline: max(32px, calc((100% - 1320px) / 2)); }
+.chevron { transition: transform 440ms cubic-bezier(.22, 1, .36, 1); }
+.faq details[open]:not(.is-expanded) .chevron { transform: none; }
+.faq details.is-expanded .chevron { transform: rotate(180deg); }
+.scroll-reveal {
+  opacity: 0;
+  translate: 0 32px;
+  transition: opacity 800ms ease, translate 800ms cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.scroll-reveal.is-visible { opacity: 1; translate: 0 0; }
+@media (min-width: 801px) and (max-width: 1150px) {
+  .container { width: calc(100% - 40px); }
+  .hero { padding-left: 0; min-height: 740px; }
+  .hero h1 { font-size: clamp(44px, 4.6vw, 53px); }
+  .hero-description { font-size: 16px; }
+  .brand { font-size: 20px; }
+  .brand strong:before { width: 146px; height: 81px; top: -37px; }
+  .nav-links { gap: 14px; padding-inline: 16px; }
+  .nav-links a { font-size: 15px; }
+  .navigation { gap: 16px; }
+  .login-button { padding-inline: 23px; font-size: 18px; }
+  .section-heading h2 { font-size: 43px; }
+  .section-heading p { font-size: 22px; }
+  .digital-card h3, .program-card h3 { font-size: 18px; }
+  .digital-card p, .program-card p { font-size: 15px; }
+  .facility-card h3, .facility-stat { font-size: 18px; }
+  .facility-card > p:last-child { font-size: 16px; }
+  .timeline { margin-inline: 50px 8px; }
+}
+@media (max-width: 800px) {
+  html { scroll-padding-top: 24px; }
+  .container { width: calc(100% - 32px); }
+  .site-header { height: 86px; padding-inline: 16px; }
+  .brand { font-size: 18px; }
+  .brand strong:before { width: 132px; height: 73px; top: -33px; }
+  .nav-links a { font-size: 17px; }
+  .hero { width: calc(100% - 48px); min-height: 0; padding: 44px 0 30px; grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(36px, 7.5vw, 57px); }
+  .hero-description { font-size: 16px; line-height: 1.5; }
+  .hero-actions .button { font-size: 15px; }
+  .poster-gallery { width: min(94%, 520px); margin-inline: auto; }
+  .digital .section-heading { margin-bottom: 110px; }
+  .digital .bubbles-right { top: calc(100% + 12px); right: 0; }
+  .section-heading h2 { font-size: 33px; }
+  .section-heading p { font-size: 17px; }
+  .digital-card h3 { font-size: 18px; }
+  .digital-card p, .program-card p { font-size: 14px; }
+  .program-card h3 { font-size: 16px; }
+  .facility-card h3, .facility-stat { font-size: 17px; }
+  .facility-card > p:last-child { font-size: 15px; }
+  .timeline { margin: 0; }
+  .faq-list { width: calc(100% - 34px); margin-left: 34px; }
+  .faq summary { font-size: 17px; }
+  .faq-answer { font-size: 15px; }
+  .faq-triangle { width: 28px; height: 28px; left: -37px; top: 36px; }
+  .closing { padding-inline: 20px; }
+}
+@media (max-width: 360px) {
+  .brand { font-size: 16px; }
+  .program-card { padding-inline: 12px; }
+  .hero-actions .button { padding-inline: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal { opacity: 1; translate: none; transition: none; }
+}
