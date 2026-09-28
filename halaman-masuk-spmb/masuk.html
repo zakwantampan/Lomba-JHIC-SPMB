@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ff8c00">
+  <title>Masuk — SPMB SMAKENSA</title>
+  <link rel="icon" href="assets/design/Logo_Smea_PNG_Fiks.png" type="image/png">
+  <link rel="preload" href="assets/design/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="auth.css">
+  <script src="auth.js" defer></script>
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-card" data-view="login">
+
+      <!-- KIRI: foto -->
+      <aside class="auth-visual" aria-hidden="true">
+        <!-- Ganti dengan foto asli: simpan sebagai assets/foto-login.jpg -->
+        <img class="auth-photo" src="assets/foto-login.jpg" alt="" onerror="this.remove()">
+        <svg class="auth-illustration" viewBox="0 0 400 520" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="110" r="70" fill="#ffffff" opacity=".12"/>
+          <circle cx="330" cy="200" r="110" fill="#ffc400" opacity=".28"/>
+          <circle cx="60" cy="380" r="46" fill="#ffffff" opacity=".1"/>
+          <path d="M40 520c0-96 70-150 160-150s160 54 160 150z" fill="#ffffff"/>
+          <path d="M170 372l30 46 30-46z" fill="#f3f3f3"/>
+          <path d="M188 392h24l6 128h-36z" fill="#ff6500"/>
+          <rect x="176" y="316" width="48" height="66" rx="22" fill="#f2b98d"/>
+          <circle cx="200" cy="270" r="66" fill="#f8c9a3"/>
+          <path d="M132 264c-4-58 34-92 76-88 40 4 62 36 60 88-14-30-40-46-70-46-28 0-50 16-66 46z" fill="#2b1b12"/>
+          <circle cx="178" cy="276" r="5" fill="#2b1b12"/>
+          <circle cx="222" cy="276" r="5" fill="#2b1b12"/>
+          <path d="M180 302c12 12 28 12 40 0" stroke="#b5522b" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="auth-visual-text">
+          <span class="auth-visual-label">SPMB SMAKENSA</span>
+          <h2>Wujudkan Mimpi.<br>Bagi Masa Depan<br>Yang Indah</h2>
+          <p>Satu sistem, satu informasi.</p>
+        </div>
+      </aside>
+
+      <!-- KANAN: form -->
+      <section class="auth-panel">
+        <a class="auth-back" href="index.html" aria-label="Kembali ke beranda">← Kembali ke beranda</a>
+        <a class="auth-brand" href="index.html">
+          <img src="assets/design/Logo_Smea_PNG_Fiks.png" alt="" width="64" height="37">
+          <span>SPMB <strong>SMAKENSA</strong></span>
+        </a>
+
+        <!-- LOGIN -->
+        <div class="auth-view" id="view-login">
+          <h1>Masuk</h1>
+          <p class="auth-sub">Masuk untuk melanjutkan proses pendaftaran.</p>
+          <form id="form-login" novalidate>
+            <div class="field">
+              <label for="login-id">Email atau NISN</label>
+              <input id="login-id" name="id" type="text" autocomplete="username" placeholder="nama@email.com" required>
+              <small class="error" data-for="login-id"></small>
+            </div>
+            <div class="field">
+              <label for="login-pass">Kata sandi</label>
+              <div class="password-wrap">
+                <input id="login-pass" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
+                <button type="button" class="toggle-pass" aria-label="Tampilkan kata sandi" aria-pressed="false">Lihat</button>
+              </div>
+              <small class="error" data-for="login-pass"></small>
+            </div>
+            <div class="row-between">
+              <label class="check"><input type="checkbox" name="remember"> Ingat saya</label>
+              <a href="#" class="link-small" data-forgot>Lupa kata sandi?</a>
+            </div>
+            <button class="auth-button" type="submit">Masuk</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="auth-divider"><span>Belum punya akun?</span></div>
+          <button class="auth-button auth-button-outline" type="button" data-switch="register">Daftar Akun Baru</button>
+        </div>
+
+        <!-- REGISTER -->
+        <div class="auth-view" id="view-register" hidden>
+          <h1>Daftar</h1>
+          <p class="auth-sub">Buat akun calon murid baru SMKN 1 Bondowoso.</p>
+          <form id="form-register" novalidate>
+            <div class="field">
+              <label for="reg-nama">Nama lengkap</label>
+              <input id="reg-nama" name="nama" type="text" autocomplete="name" placeholder="Sesuai ijazah" required>
+              <small class="error" data-for="reg-nama"></small>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label for="reg-nisn">NISN</label>
+                <input id="reg-nisn" name="nisn" type="text" inputmode="numeric" maxlength="10" placeholder="10 digit" required>
+                <small class="error" data-for="reg-nisn"></small>
+              </div>
+              <div class="field">
+                <label for="reg-hp">No. WhatsApp</label>
+                <input id="reg-hp" name="hp" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" required>
+                <small class="error" data-for="reg-hp"></small>
+              </div>
+            </div>
+            <div class="field">
+              <label for="reg-email">Email</label>
+              <input id="reg-email" name="email" type="email" autocomplete="email" placeholder="nama@email.com" required>
+              <small class="error" data-for="reg-email"></small>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label for="reg-pass">Kata sandi</label>
+                <input id="reg-pass" name="password" type="password" autocomplete="new-password" placeholder="Minimal 8 karakter" required>
+                <small class="error" data-for="reg-pass"></small>
+              </div>
+              <div class="field">
+                <label for="reg-pass2">Ulangi kata sandi</label>
+                <input id="reg-pass2" name="password2" type="password" autocomplete="new-password" placeholder="Ulangi kata sandi" required>
+                <small class="error" data-for="reg-pass2"></small>
+              </div>
+            </div>
+            <button class="auth-button" type="submit">Daftar</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="auth-divider"><span>Sudah punya akun?</span></div>
+          <button class="auth-button auth-button-outline" type="button" data-switch="login">Masuk</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

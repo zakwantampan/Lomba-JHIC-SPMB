@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk ke Akun Anda - SPMB SMKN 1 Bondowoso</title>
+    
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="login_spmb.css">    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <!-- LEFT SECTION (Form Content) -->
+        <main class="left-section">
+            
+            <!-- Top Logo Header -->
+            <div class="logo-header">
+                <div class="logo-badge">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">SPMB SMKN 1</span>
+                    <span class="logo-sub">Bondowoso</span>
+                </div>
+            </div>
+
+            <!-- Centered Login Form -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>Masuk ke Akun Anda</h1>
+                    <p>Selamat datang kembali, silahkan masukkan data Anda</p>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    
+                    <!-- Username/Email Input -->
+                    <div class="form-group">
+                        <label class="form-label" for="identity">Alamat Email / Username *</label>
+                        <div class="input-box">
+                            <input type="text" id="identity" placeholder="nama@website.com" required autocomplete="username">
+                            <i class="fa-regular fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label class="form-label" for="password">Kata Sandi *</label>
+                        <div class="input-box">
+                            <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+                            <i class="fa-solid fa-lock input-icon"></i>
+                            <button type="button" class="toggle-pwd" id="togglePassword" aria-label="Toggle password visibility">
+                                <i class="fa-regular fa-eye-slash" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="form-options">
+                        <label class="remember-check">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Ingat saya</span>
+                        </label>
+                        <a href="#forgot" class="forgot-link" onclick="showNotification('Silakan hubungi Panitia SPMB jika lupa kata sandi.')">Lupa kata sandi?</a>
+                    </div>
+
+                    <!-- Simulated Google reCAPTCHA -->
+                    <div class="recaptcha-card">
+                        <div class="recaptcha-left">
+                            <div class="recaptcha-checkbox" id="recaptchaBox" onclick="toggleCaptcha()">
+                                <i class="fa-solid fa-check"></i>
+                                <div class="recaptcha-spinner" id="captchaSpinner"></div>
+                            </div>
+                            <span class="recaptcha-text">I'm not a robot</span>
+                        </div>
+                        <div class="recaptcha-brand">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>reCAPTCHA</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-submit">
+                        Masuk
+                    </button>
+
+                    <!-- Register Link -->
+                    <div class="register-footer">
+                        Belum punya akun? <a href="#register" onclick="showNotification('Portal Pendaftaran Akun Baru SPMB dibuka.')">Buat akun baru</a>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Bottom Left copyright -->
+            <div class="left-footer">
+                &copy; 2026 Tim IT SPMB SMKN 1 Bondowoso.
+            </div>
+
+        </main>
+
+        <!-- RIGHT SECTION (Hero Image & Quote Overlay) -->
+        <aside class="right-section">
+            <div class="right-overlay"></div>
+            
+            <div class="hero-content">
+                <blockquote class="hero-quote">
+                    Pendataan Cepat & Akurat. Pantau status Pendataan dan Pendaftaran secara real-time langsung melalui dashboard Anda!
+                </blockquote>
+                <div class="hero-author">
+                    <span class="author-name">Tim IT SPMB</span>
+                    <span class="author-role">SMKN 1 Bondowoso</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Floating Help Button -->
+    <button class="floating-help-btn" onclick="showNotification('Butuh bantuan? Buka layanan Helpdesk SPMB.')" title="Bantuan / Helpdesk">
+        <i class="fa-solid fa-question"></i>
+    </button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toastBox">
+        <i class="fa-solid fa-circle-info" style="color: var(--yellow);"></i>
+        <span id="toastText">Pesan pemberitahuan</span>
+    </div>
+
+    <script>
+        // Password Visibility Toggle
+        const passwordInput = document.getElementById('password');
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        togglePasswordBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            
+            if (isPassword) {
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            } else {
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            }
+        });
+
+        // Interactive reCAPTCHA Simulation
+        let isCaptchaVerified = false;
+        function toggleCaptcha() {
+            const box = document.getElementById('recaptchaBox');
+            const spinner = document.getElementById('captchaSpinner');
+
+            if (isCaptchaVerified) return;
+
+            // Show spinner
+            spinner.style.display = 'block';
+
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                box.classList.add('checked');
+                isCaptchaVerified = true;
+            }, 700);
+        }
+
+        // Form Submit Handler
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            if (!isCaptchaVerified) {
+                showNotification('Silakan centang "I\'m not a robot" terlebih dahulu.');
+                return;
+            }
+
+            const identity = document.getElementById('identity').value;
+            showNotification(`Proses Masuk... Selamat datang, ${identity}!`);
+        }
+
+        // Toast Helper
+        function showNotification(message) {
+            const toast = document.getElementById('toastBox');
+            const toastText = document.getElementById('toastText');
+            
+            toastText.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
