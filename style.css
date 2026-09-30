@@ -6,6 +6,7 @@
     --muted: #555;
     --gray: #efefef;
     --line: #dedede;
+    --border:#cfcfcf;
     --shadow: 8px 11px 7px #00000038;
 }
 
@@ -116,7 +117,7 @@ a.button {
     align-items: center;
     background: var(--orange);
     color: white;
-    border: 2px solid transparent;
+   
     border-radius: 50px;
     min-height: 66px;
     padding: 17px 44px;
@@ -136,6 +137,7 @@ a.button {
     background: white;
     color: #222;
     border-color: #bcbcbc;
+    border: 2px solid var(--border);
 }
 
 .button-outline:hover {
@@ -164,8 +166,7 @@ a.button {
     border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 42px 0 28px;
+    justify-content: space-around;
     gap: 24px;
     overflow: clip;
 }
@@ -212,7 +213,7 @@ a.button {
 .nav-links {
     display: flex;
     gap: 30px;
-    border: 1px solid #cfcfcf;
+    border: 1px solid var(--border);
     border-radius: 45px;
     padding: 15px 26px;
 }
@@ -336,7 +337,8 @@ a.button {
 .digital-card {
     width: 100%;
     background: white;
-    border: 1px solid #dedede;
+    border: 0;
+   
     border-radius: 16px;
     min-height: 336px;
     padding: 29px 10px 19px;
@@ -345,6 +347,7 @@ a.button {
     align-items: center;
     flex-direction: column;
     color: var(--ink);
+    border: 1px solid var(--border);
     transition:
         transform 0.18s,
         box-shadow 0.18s;
@@ -352,7 +355,7 @@ a.button {
 
 .digital-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 22px #00000012;
+    box-shadow: var(--shadow);
 }
 
 .icon-tile {
@@ -529,11 +532,10 @@ a.button {
 
 .facility-card {
     min-height: 305px;
-    border: 2px solid #ababab;
+    border: 2px solid var(--border);
     border-radius: 15px;
     padding: 18px 19px;
     text-align: center;
-    box-shadow: var(--shadow);
     background: white;
 }
 
@@ -620,9 +622,9 @@ a.button {
 
 .timeline-card {
     position: relative;
-    border: 2px solid #ddd;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
     border-radius: 22px;
-    box-shadow: 0 8px 4px #0004;
     padding: 24px 25px 54px;
     min-height: 225px;
 }
@@ -669,7 +671,7 @@ a.button {
 .timeline-rail span {
     width: 34px;
     height: 34px;
-    border: 3px solid #666;
+    /* border: 3px solid #666; */
     background: white;
     border-radius: 50%;
     margin-left: 5px;
@@ -701,7 +703,7 @@ a.button {
 
 .event-icon {
     position: absolute;
-    bottom: 15px;
+    bottom: 5px;
     right: 13px;
     width: 78px;
     height: 78px;
@@ -768,7 +770,7 @@ a.button {
     top: -20px;
     width: 405px;
     height: 175px;
-    border: 17px solid var(--orange);
+    /* border: 17px solid var(--orange); */
     border-radius: 50%;
     transform: rotate(28deg);
 }
@@ -778,7 +780,7 @@ a.button {
     content: "";
     position: absolute;
     inset: 11px;
-    border: 13px solid var(--yellow);
+    /* border: 13px solid var(--yellow); */
     border-radius: 50%;
 }
 
@@ -818,10 +820,10 @@ a.button {
 
 .faq details {
     position: relative;
-    border: 2px solid #aaa;
+    /* border: 2px solid #aaa; */
     border-radius: 15px;
     background: white;
-    box-shadow: 0 8px 3px #0006;
+    box-shadow: var(--shadow);
 }
 
 .faq details:before {
@@ -981,7 +983,7 @@ a.button {
 
 dialog {
     width: min(540px, calc(100% - 40px));
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 24px;
     padding: 38px;
     color: var(--ink);
@@ -1244,7 +1246,7 @@ dialog h2 {
         flex-direction: column;
         gap: 5px;
         background: white;
-        border: 1px solid #ddd;
+        /* border: 1px solid #ddd; */
         border-radius: 10px;
         padding: 10px;
     }
@@ -1273,7 +1275,7 @@ dialog h2 {
     }
 
     .nav-links {
-        border: 0;
+        /* border: 0; */
         padding: 0;
         flex-direction: column;
         gap: 0;
