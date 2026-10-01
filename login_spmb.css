@@ -44,6 +44,13 @@
         }
 
         /* Logo Header */
+        .logo-img{
+            width: 80px;
+         
+            
+            object-fit: cover;
+        }
+
         .logo-header {
             display: flex;
             align-items: center;
