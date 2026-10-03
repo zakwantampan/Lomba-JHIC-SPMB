@@ -4,116 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk ke Akun Anda - SPMB SMKN 1 Bondowoso</title>
-    
-    <!-- Google Fonts Inter -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="login_spmb.css">    
-    <!-- FontAwesome Icons -->
+    <!-- CSS lama kamu (tidak diubah) -->
+    <link rel="stylesheet" href="login_spmb.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- TAMBAHAN: boleh dipindah ke bagian bawah login_spmb.css -->
     <style>
-       
+
     </style>
 </head>
 <body>
 
-    <div class="page-container">
-        <!-- LEFT SECTION (Form Content) -->
-        <main class="left-section">
-            
-            <!-- Top Logo Header -->
-            
-            <div class="logo-header">
-               
+    <div class="page-container" id="pageContainer">
+
+        <!-- PANEL PUTIH (login & register bergantian di sini) -->
+        <main class="left-section" id="leftSection">
+
+            <div class="top-bar">
+                <div class="logo-header">
                     <img src="./assets/logo.png" alt="Logo" class="logo-img">
-               
-                <div class="logo-text">
-                    <span class="logo-title">SPMB SMKN 1</span>
-                    <span class="logo-sub">Bondowoso</span>
+                    <div class="logo-text">
+                        <span class="logo-title">SPMB SMKN 1</span>
+                        <span class="logo-sub">Bondowoso</span>
+                    </div>
                 </div>
+
+                <!-- Tombol Kembali -->
+                <button type="button" class="btn-kembali" onclick="goBack()">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali 
+                </button>
             </div>
 
-            <!-- Centered Login Form -->
             <div class="form-container">
-                <div class="form-header">
-                    <h1>Masuk ke Akun Anda</h1>
-                    <p>Selamat datang kembali, silahkan masukkan data Anda</p>
-                </div>
 
-                <form id="loginForm" onsubmit="handleLogin(event)">
-                    
-                    <!-- Username/Email Input -->
-                    <div class="form-group">
-                        <label class="form-label" for="identity">Alamat Email / Username *</label>
-                        <div class="input-box">
-                            <input type="text" id="identity" placeholder="nama@website.com" required autocomplete="username">
-                            <i class="fa-regular fa-envelope input-icon"></i>
-                        </div>
+                <!-- ================= VIEW LOGIN ================= -->
+                <section class="view active" id="loginView">
+                    <div class="form-header">
+                        <h1>Masuk ke Akun Anda</h1>
+                        <p>Selamat datang kembali, silahkan masukkan data Anda</p>
                     </div>
 
-                    <!-- Password Input -->
-                    <div class="form-group">
-                        <label class="form-label" for="password">Kata Sandi *</label>
-                        <div class="input-box">
-                            <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
-                            <i class="fa-solid fa-lock input-icon"></i>
-                            <button type="button" class="toggle-pwd" id="togglePassword" aria-label="Toggle password visibility">
-                                <i class="fa-regular fa-eye-slash" id="eyeIcon"></i>
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="identity">Alamat Email / Username *</label>
+                            <div class="input-box">
+                                <input type="text" id="identity" placeholder="nama@website.com" required autocomplete="username">
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="password">Kata Sandi *</label>
+                            <div class="input-box">
+                                <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <button type="button" class="toggle-pwd" data-target="password" aria-label="Toggle password visibility">
+                                    <i class="fa-regular fa-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="remember-check">
+                                <input type="checkbox" id="rememberMe">
+                                <span>Ingat saya</span>
+                            </label>
+                            <a href="#forgot" class="forgot-link" onclick="showNotification('Silakan hubungi Panitia SPMB jika lupa kata sandi.')">Lupa kata sandi?</a>
+                        </div>
+
+                        <div class="recaptcha-card">
+                            <div class="recaptcha-left">
+                                <div class="recaptcha-checkbox" id="recaptchaBox" onclick="toggleCaptcha()">
+                                    <i class="fa-solid fa-check"></i>
+                                    <div class="recaptcha-spinner" id="captchaSpinner"></div>
+                                </div>
+                                <span class="recaptcha-text">I'm not a robot</span>
+                            </div>
+                            <div class="recaptcha-brand">
+                                <i class="fa-solid fa-rotate-right"></i>
+                                <span>reCAPTCHA</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Masuk</button>
+
+                        <div class="register-footer">
+                            Belum punya akun? <a href="#daftar">Buat akun baru</a>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- ================= VIEW REGISTER ================= -->
+                <section class="view" id="registerView">
+                    <div class="form-header">
+                        <h1>Daftar Akun Baru</h1>
+                    </div>
+
+                    <div class="stepper">
+                        <div class="step-dot active" id="dot1">1</div>
+                        <div class="step-line" id="stepLine"></div>
+                        <div class="step-dot" id="dot2">2</div>
+                    </div>
+
+                    <form id="registerForm" onsubmit="handleRegister(event)" novalidate>
+
+                        <!-- STEP 1: DATA UTAMA -->
+                        <div class="step active" id="step1">
+                            <h3 class="step-title">Data Utama</h3>
+                            <p class="step-desc">Isi data yang akan dikunci (lock) dan tidak bisa diubah setelah pendaftaran</p>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regNama">Nama Lengkap *</label>
+                                <div class="input-box">
+                                    <input type="text" id="regNama" placeholder="Nama lengkap" autocomplete="name">
+                                    <i class="fa-regular fa-user input-icon"></i>
+                                </div>
+                                <small class="hint">Isi sesuai akta kelahiran</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regNisn">NISN *</label>
+                                <div class="input-box">
+                                    <input type="text" id="regNisn" placeholder="10 digit NISN" inputmode="numeric" maxlength="10">
+                                    <i class="fa-regular fa-id-badge input-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regNik">NIK *</label>
+                                <div class="input-box">
+                                    <input type="text" id="regNik" placeholder="16 digit NIK" inputmode="numeric" maxlength="16">
+                                    <i class="fa-regular fa-address-card input-icon"></i>
+                                </div>
+                                <small class="hint">Berdasarkan KK asli</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regEmail">Email *</label>
+                                <div class="input-box">
+                                    <input type="email" id="regEmail" placeholder="nama@email.com" autocomplete="email">
+                                    <i class="fa-regular fa-envelope input-icon"></i>
+                                </div>
+                                <small class="hint">Email aktif untuk verifikasi</small>
+                            </div>
+
+                            <button type="button" class="btn-submit" onclick="nextStep()">
+                                Lanjut <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </div>
-                    </div>
 
-                    <!-- Remember Me & Forgot Password -->
-                    <div class="form-options">
-                        <label class="remember-check">
-                            <input type="checkbox" id="rememberMe">
-                            <span>Ingat saya</span>
-                        </label>
-                        <a href="#forgot" class="forgot-link" onclick="showNotification('Silakan hubungi Panitia SPMB jika lupa kata sandi.')">Lupa kata sandi?</a>
-                    </div>
+                        <!-- STEP 2: DATA TAMBAHAN -->
+                        <div class="step" id="step2">
+                            <h3 class="step-title">Data Tambahan</h3>
+                            <p class="step-desc">Lengkapi profil pendaftaran dan kredensial Anda</p>
 
-                    <!-- Simulated Google reCAPTCHA -->
-                    <div class="recaptcha-card">
-                        <div class="recaptcha-left">
-                            <div class="recaptcha-checkbox" id="recaptchaBox" onclick="toggleCaptcha()">
-                                <i class="fa-solid fa-check"></i>
-                                <div class="recaptcha-spinner" id="captchaSpinner"></div>
+                            <div class="form-group">
+                                <label class="form-label" for="regHp">No HP/WhatsApp *</label>
+                                <div class="input-box">
+                                    <input type="tel" id="regHp" placeholder="08xxxxxxxxxx" inputmode="tel" autocomplete="tel">
+                                    <i class="fa-solid fa-phone input-icon"></i>
+                                </div>
                             </div>
-                            <span class="recaptcha-text">I'm not a robot</span>
-                        </div>
-                        <div class="recaptcha-brand">
-                            <i class="fa-solid fa-rotate-right"></i>
-                            <span>reCAPTCHA</span>
-                        </div>
-                    </div>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn-submit">
-                        Masuk
-                    </button>
+                            <div class="form-group">
+                                <label class="form-label" for="regTahun">Tahun Penerimaan *</label>
+                                <div class="input-box">
+                                    <select id="regTahun">
+                                        <option value="">- Pilih Tahun -</option>
+                                        <option value="2026">2026</option>
+                                    </select>
+                                    <i class="fa-regular fa-calendar input-icon"></i>
+                                    <i class="fa-solid fa-chevron-down select-arrow"></i>
+                                </div>
+                            </div>
 
-                    <!-- Register Link -->
+                            <div class="form-group">
+                                <label class="form-label" for="regPass">Password *</label>
+                                <div class="input-box">
+                                    <input type="password" id="regPass" placeholder="••••••••" autocomplete="new-password">
+                                    <i class="fa-solid fa-lock input-icon"></i>
+                                    <button type="button" class="toggle-pwd" data-target="regPass" aria-label="Toggle password visibility">
+                                        <i class="fa-regular fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="regPass2">Konfirmasi Password *</label>
+                                <div class="input-box">
+                                    <input type="password" id="regPass2" placeholder="••••••••" autocomplete="new-password">
+                                    <i class="fa-solid fa-lock input-icon"></i>
+                                    <button type="button" class="toggle-pwd" data-target="regPass2" aria-label="Toggle password visibility">
+                                        <i class="fa-regular fa-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <label class="terms-check">
+                                <input type="checkbox" id="regTerms">
+                                <span>Saya menyetujui <a href="#" onclick="openTerms(event)">syarat dan ketentuan</a> pendaftaran</span>
+                            </label>
+
+                            <div class="btn-row">
+                                <button type="button" class="btn-submit btn-back" onclick="prevStep()">
+                                    <i class="fa-solid fa-arrow-left"></i> Kembali
+                                </button>
+                                <button type="submit" class="btn-submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
                     <div class="register-footer">
-                        Belum punya akun? <a href="#register" onclick="showNotification('Portal Pendaftaran Akun Baru SPMB dibuka.')">Buat akun baru</a>
+                        Sudah punya akun? <a href="#login">Login di sini</a>
                     </div>
+                </section>
 
-                </form>
             </div>
 
-            <!-- Bottom Left copyright -->
             <div class="left-footer">
                 &copy; 2026 Tim IT SPMB SMKN 1 Bondowoso.
             </div>
-
         </main>
 
-        <!-- RIGHT SECTION (Hero Image & Quote Overlay) -->
+        <!-- PANEL FOTO -->
         <aside class="right-section">
             <div class="right-overlay"></div>
-            
             <div class="hero-content">
                 <blockquote class="hero-quote">
                     Pendataan Cepat & Akurat. Pantau status Pendataan dan Pendaftaran secara real-time langsung melalui dashboard Anda!
@@ -126,47 +245,146 @@
         </aside>
     </div>
 
-    <!-- Floating Help Button -->
-    <button class="floating-help-btn" onclick="showNotification('Butuh bantuan? Buka layanan Helpdesk SPMB.')" title="Bantuan / Helpdesk">
+    <button class="floating-help-btn" onclick="openHelp()" title="Bantuan / Helpdesk">
         <i class="fa-solid fa-question"></i>
     </button>
 
-    <!-- Toast Notification -->
+    <!-- Modal Panduan Pembuatan Akun (tombol tanda tanya) -->
+    <div class="modal" id="helpModal" onclick="if(event.target===this)closeHelp()">
+        <div class="modal-card help-card">
+            <div class="help-header">
+                <h4 class="help-title"><i class="fa-solid fa-circle-info"></i> Panduan Pembuatan Akun</h4>
+                <button type="button" class="help-close" onclick="closeHelp()" aria-label="Tutup">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="help-body">
+                <ol class="help-steps">
+                    <li><span class="num">1</span><span>Buat akun baru khusus untuk pendaftar / calon murid Baru Yang Belum Memiliki Akun.</span></li>
+                    <li><span class="num">2</span><span>Jika Belum Memiliki Akun Silahkan Klik Tombol "Buat akun baru" Di Bawah form login.</span></li>
+                    <li><span class="num">3</span><span>Login menggunakan Email yang didaftarkan.</span></li>
+                    <li><span class="num">4</span><span>Lengkapi seluruh Isian Seperti Nama, NISN, NIK, Email, Alamat, No.Hp, Password.</span></li>
+                    <li><span class="num">5</span><span>Pastikan Sebelum Submit Checklist Syarat &amp; Ketentuan.</span></li>
+                    <li><span class="num">6</span><span>Jika Bingung Bisa Menghubungi Call Center Kami</span></li>
+                </ol>
+
+                <hr class="help-divider">
+
+                <p class="help-contact-title">Segera Hubungi Call Center Jika Kesulitan:</p>
+                <div class="cs-grid">
+                    <!-- Ganti 628xxxxxxxxxx dengan nomor WhatsApp CS (format 62, tanpa 0 / +) -->
+                    <a class="cs-btn" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp"></i> CS 1
+                    </a>
+                    <a class="cs-btn" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp"></i> CS 2
+                    </a>
+                    <a class="cs-btn" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp"></i> CS 3
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Syarat & Ketentuan -->
+    <div class="modal" id="termsModal" onclick="if(event.target===this)closeTerms()">
+        <div class="modal-card">
+            <h4>Syarat dan Ketentuan Pendaftaran</h4>
+            <ol>
+                <li>Setiap calon siswa hanya boleh mendaftar satu kali</li>
+                <li>NISN, NIK, dan Email yang digunakan harus valid dan milik sendiri</li>
+                <li>Data yang diisi harus sesuai dengan dokumen asli</li>
+                <li>Formulir hanya bisa diedit maksimal 2 kali setelah submit</li>
+                <li>Panitia berhak membatalkan pendaftaran jika ditemukan data palsu</li>
+                <li>Pendaftaran tidak dipungut biaya</li>
+            </ol>
+            <button type="button" class="btn-submit" onclick="closeTerms()">Mengerti</button>
+        </div>
+    </div>
+
     <div class="toast" id="toastBox">
         <i class="fa-solid fa-circle-info" style="color: var(--yellow);"></i>
         <span id="toastText">Pesan pemberitahuan</span>
     </div>
 
     <script>
-        // Password Visibility Toggle
-        const passwordInput = document.getElementById('password');
-        const togglePasswordBtn = document.getElementById('togglePassword');
-        const eyeIcon = document.getElementById('eyeIcon');
+        /* ========== Transisi Login <-> Register ========== */
+        const container = document.getElementById('pageContainer');
+        const leftSection = document.getElementById('leftSection');
+        const loginView = document.getElementById('loginView');
+        const registerView = document.getElementById('registerView');
+        let currentView = 'login';
 
-        togglePasswordBtn.addEventListener('click', () => {
-            const isPassword = passwordInput.type === 'password';
-            passwordInput.type = isPassword ? 'text' : 'password';
-            
-            if (isPassword) {
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+        function switchView(target, instant = false) {
+            if (target === currentView) return;
+            currentView = target;
+
+            const outView = target === 'register' ? loginView : registerView;
+            const inView  = target === 'register' ? registerView : loginView;
+
+            container.classList.toggle('register-mode', target === 'register');
+            document.title = target === 'register'
+                ? 'Daftar Akun Baru - SPMB SMKN 1 Bondowoso'
+                : 'Masuk ke Akun Anda - SPMB SMKN 1 Bondowoso';
+
+            const swap = () => {
+                outView.classList.remove('active', 'fade-out');
+                inView.classList.add('active');
+                leftSection.scrollTop = 0;
+                if (target === 'register') goStep(1);
+            };
+
+            if (instant) { swap(); return; }
+
+            outView.classList.add('fade-out');
+            setTimeout(swap, 350); // ganti isi form saat panel mulai bergeser
+        }
+
+        // Tombol Kembali: dari register -> login, dari login -> beranda website
+        function goBack() {
+            if (currentView === 'register') {
+                location.hash = '#login';
             } else {
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
+                window.location.href = 'index.html'; // ganti dengan halaman beranda kamu
             }
+        }
+
+        function syncWithHash(instant = false) {
+            switchView(location.hash === '#daftar' ? 'register' : 'login', instant);
+        }
+
+        window.addEventListener('hashchange', () => syncWithHash());
+        // Kalau halaman dibuka langsung dengan #daftar
+        if (location.hash === '#daftar') {
+            container.style.setProperty('--noanim', '1');
+            container.querySelectorAll('.left-section,.right-section').forEach(el => el.style.transition = 'none');
+            syncWithHash(true);
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                container.querySelectorAll('.left-section,.right-section').forEach(el => el.style.transition = '');
+            }));
+        }
+
+        /* ========== Toggle password (semua field) ========== */
+        document.querySelectorAll('.toggle-pwd').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const input = document.getElementById(btn.dataset.target);
+                const icon = btn.querySelector('i');
+                const show = input.type === 'password';
+                input.type = show ? 'text' : 'password';
+                icon.classList.toggle('fa-eye', show);
+                icon.classList.toggle('fa-eye-slash', !show);
+            });
         });
 
-        // Interactive reCAPTCHA Simulation
+        /* ========== reCAPTCHA simulasi (login) ========== */
         let isCaptchaVerified = false;
         function toggleCaptcha() {
             const box = document.getElementById('recaptchaBox');
             const spinner = document.getElementById('captchaSpinner');
-
             if (isCaptchaVerified) return;
-
-            // Show spinner
             spinner.style.display = 'block';
-
             setTimeout(() => {
                 spinner.style.display = 'none';
                 box.classList.add('checked');
@@ -174,30 +392,107 @@
             }, 700);
         }
 
-        // Form Submit Handler
         function handleLogin(event) {
             event.preventDefault();
-            
             if (!isCaptchaVerified) {
                 showNotification('Silakan centang "I\'m not a robot" terlebih dahulu.');
                 return;
             }
-
             const identity = document.getElementById('identity').value;
             showNotification(`Proses Masuk... Selamat datang, ${identity}!`);
         }
 
-        // Toast Helper
+        /* ========== Register: 2 langkah ========== */
+        function goStep(n) {
+            document.getElementById('step1').classList.toggle('active', n === 1);
+            document.getElementById('step2').classList.toggle('active', n === 2);
+
+            const dot1 = document.getElementById('dot1');
+            const dot2 = document.getElementById('dot2');
+            dot1.className = 'step-dot ' + (n === 1 ? 'active' : 'done');
+            dot1.innerHTML = n === 1 ? '1' : '<i class="fa-solid fa-check"></i>';
+            dot2.className = 'step-dot' + (n === 2 ? ' active' : '');
+            document.getElementById('stepLine').classList.toggle('filled', n === 2);
+            leftSection.scrollTop = 0;
+        }
+
+        function markInvalid(id, bad) {
+            document.getElementById(id).classList.toggle('invalid', bad);
+            return bad;
+        }
+
+        function nextStep() {
+            const nama  = document.getElementById('regNama').value.trim();
+            const nisn  = document.getElementById('regNisn').value.trim();
+            const nik   = document.getElementById('regNik').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+
+            const errors = [
+                markInvalid('regNama', !nama),
+                markInvalid('regNisn', !/^\d{10}$/.test(nisn)),
+                markInvalid('regNik', !/^\d{16}$/.test(nik)),
+                markInvalid('regEmail', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+            ];
+
+            if (errors.some(Boolean)) {
+                showNotification('Lengkapi data dengan benar. NISN 10 digit, NIK 16 digit.');
+                return;
+            }
+            goStep(2);
+        }
+
+        function prevStep() { goStep(1); }
+
+        function handleRegister(event) {
+            event.preventDefault();
+
+            const hp    = document.getElementById('regHp').value.trim();
+            const tahun = document.getElementById('regTahun').value;
+            const pass  = document.getElementById('regPass').value;
+            const pass2 = document.getElementById('regPass2').value;
+            const terms = document.getElementById('regTerms').checked;
+
+            const errors = [
+                markInvalid('regHp', !/^(\+62|62|0)8\d{7,12}$/.test(hp)),
+                markInvalid('regPass', pass.length < 8),
+                markInvalid('regPass2', pass !== pass2)
+            ];
+
+            if (errors[0]) return showNotification('Nomor HP/WhatsApp tidak valid.');
+            if (!tahun)    return showNotification('Pilih Tahun Penerimaan.');
+            if (errors[1]) return showNotification('Password minimal 8 karakter.');
+            if (errors[2]) return showNotification('Konfirmasi password tidak sama.');
+            if (!terms)    return showNotification('Anda harus menyetujui syarat dan ketentuan.');
+
+            showNotification('Pendaftaran berhasil diproses!');
+            // TODO: kirim ke backend (fetch ke register.php)
+        }
+
+        // Hapus tanda merah saat user mengetik
+        document.querySelectorAll('#registerForm input').forEach(i =>
+            i.addEventListener('input', () => i.classList.remove('invalid')));
+
+        /* ========== Modal syarat & ketentuan ========== */
+        function openTerms(e) { e.preventDefault(); document.getElementById('termsModal').classList.add('show'); }
+        function closeTerms() { document.getElementById('termsModal').classList.remove('show'); }
+
+        /* ========== Modal panduan (tombol tanda tanya) ========== */
+        function openHelp()  { document.getElementById('helpModal').classList.add('show'); }
+        function closeHelp() { document.getElementById('helpModal').classList.remove('show'); }
+
+        // Tutup modal dengan tombol Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { closeHelp(); closeTerms(); }
+        });
+
+        /* ========== Toast ========== */
+        let toastTimer;
         function showNotification(message) {
             const toast = document.getElementById('toastBox');
-            const toastText = document.getElementById('toastText');
-            
-            toastText.textContent = message;
+            document.getElementById('toastText').textContent = message;
             toast.classList.add('show');
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3500);
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
         }
     </script>
 </body>

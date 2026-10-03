@@ -300,3 +300,84 @@ if (!motionPreference.matches && "IntersectionObserver" in window) {
     }
   });
 }
+
+/* ===== Preloader SPMB: progress mengikuti loading aset sungguhan ===== */
+(function () {
+    const loader = document.getElementById('preloader');
+    if (!loader) return;
+
+    const bar = loader.querySelector('.preloader-bar span');
+    const text = loader.querySelector('.preloader-text');
+
+    document.documentElement.classList.add('is-loading');
+
+    const MAX_WAIT = 10000; // batas aman: maksimal 10 detik, setelah itu tetap dibuka
+    let target = 0;         // progres asli (0-100)
+    let shown = 0;          // progres yang ditampilkan (dihaluskan)
+    let finished = false;
+
+    function start() {
+        // Gambar yang ikut dihitung (lazy-load dilewati supaya tidak menggantung)
+        const imgs = Array.from(document.images).filter(
+            (img) => img.loading !== 'lazy' && !loader.contains(img)
+        );
+
+        const total = imgs.length + 1; // +1 untuk font
+        let loaded = 0;
+
+        const tick = () => {
+            loaded++;
+            target = Math.min(100, Math.round((loaded / total) * 100));
+        };
+
+        imgs.forEach((img) => {
+            if (img.complete) {
+                tick();
+            } else {
+                img.addEventListener('load', tick, { once: true });
+                img.addEventListener('error', tick, { once: true }); // gambar rusak tetap dihitung
+            }
+        });
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(tick);
+        } else {
+            tick();
+        }
+
+        setTimeout(() => { target = 100; }, MAX_WAIT);
+        requestAnimationFrame(animate);
+    }
+
+    function animate() {
+        shown += (target - shown) * 0.12;
+        if (target === 100 && shown > 99.5) shown = 100;
+
+        bar.style.width = shown + '%';
+        text.textContent = 'Memuat... ' + Math.round(shown) + '%';
+
+        if (shown >= 100) {
+            finish();
+        } else {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    function finish() {
+        if (finished) return;
+        finished = true;
+
+        setTimeout(() => {
+            loader.classList.add('hide');
+            document.documentElement.classList.remove('is-loading');
+            setTimeout(() => loader.remove(), 600);
+        }, 250);
+    }
+
+    // Tunggu semua script (termasuk script.js yang membuat galeri/kartu) selesai render
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+    } else {
+        start();
+    }
+})();

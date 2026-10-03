@@ -339,7 +339,7 @@ a.button {
     background: white;
     border: 0;
    
-    border-radius: 16px;
+    border-radius: 26px;
     min-height: 336px;
     padding: 29px 10px 19px;
     text-align: center;
@@ -449,7 +449,7 @@ a.button {
 
 .program-card {
     background: white;
-    border-radius: 30px;
+    border-radius: 26px;
     box-shadow: var(--shadow);
     padding: 26px 34px 30px;
     min-height: 418px;
@@ -533,7 +533,7 @@ a.button {
 .facility-card {
     min-height: 305px;
     border: 2px solid var(--border);
-    border-radius: 15px;
+    border-radius: 26px;
     padding: 18px 19px;
     text-align: center;
     background: white;
@@ -624,7 +624,7 @@ a.button {
     position: relative;
     border: 2px solid var(--border);
     box-shadow: var(--shadow);
-    border-radius: 22px;
+    border-radius: 26px;
     padding: 24px 25px 54px;
     min-height: 225px;
 }
@@ -821,7 +821,7 @@ a.button {
 .faq details {
     position: relative;
     /* border: 2px solid #aaa; */
-    border-radius: 15px;
+    border-radius: 26px;
     background: white;
     box-shadow: var(--shadow);
 }
@@ -919,7 +919,7 @@ a.button {
 .cta {
     background: linear-gradient(112deg, #ffb047, #ffad40);
     min-height: 448px;
-    border-radius: 13px;
+    border-radius: 26px;
     box-shadow: 11px 12px 5px #0005;
     text-align: center;
     color: white;
@@ -1047,6 +1047,103 @@ dialog h2 {
     height: 164px;
     top: -82px;
     right: -12px;
+}
+
+.lomba-strip {
+  max-width: var(--maxw);
+  margin: 0 auto clamp(28px, 4vw, 44px);
+  text-align: center;
+  margin-top: 20px
+}
+
+.lomba-strip-label {
+  font-size: clamp(11.5px, 1.2vw, 13px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #8E8E8E;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+}
+
+.lomba-strip-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 2.8vw, 36px);
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.lomba-main-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lomba-main-logo img.logo-jhic {
+  max-height: clamp(56px, 6vw, 70px);
+  max-width: clamp(130px, 15vw, 175px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(255, 107, 0, 0.25));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.lomba-main-logo img.logo-jhic:hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0 6px 20px rgba(255, 107, 0, 0.45));
+}
+
+.lomba-divider {
+  width: 1px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.lomba-supporters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.5vw, 30px);
+  flex-wrap: wrap;
+}
+
+.lomba-supporters img {
+  max-height: clamp(24px, 2.4vw, 30px);
+  max-width: clamp(75px, 10vw, 130px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+}
+
+.lomba-supporters img[alt="Jagoan Hosting"] {
+  max-height: clamp(23px, 2.3vw, 28px);
+}
+
+.lomba-supporters img[alt="KOMDIGI"] {
+  max-height: clamp(26px, 2.7vw, 32px);
+}
+
+.lomba-supporters img[alt="Garuda Spark"] {
+  max-height: clamp(27px, 2.8vw, 33px);
+}
+
+.lomba-supporters img[alt="Ngalup.co"] {
+  max-height: clamp(17px, 1.8vw, 21px);
+  max-width: clamp(90px, 12vw, 145px);
+}
+
+.lomba-supporters img:hover {
+  opacity: 1;
+  transform: scale(1.06);
+  filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.25));
 }
 
 @media (min-width: 1151px) {
@@ -1823,4 +1920,68 @@ dialog h2 {
     *:after {
         transition: none !important;
     }
+}
+
+/* ===== Preloader SPMB ===== */
+html.is-loading,
+html.is-loading body {
+    overflow: hidden;
+}
+
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-logo {
+    width: 110px;
+    height: auto;
+    animation: preloaderFloat 1.6s ease-in-out infinite;
+}
+
+.preloader-bar {
+    width: min(260px, 70vw);
+    height: 6px;
+    border-radius: 999px;
+    background: #ffe9cc;
+    overflow: hidden;
+}
+
+.preloader-bar span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #ff8c00, #ffc400);
+}
+
+.preloader-text {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    letter-spacing: 0.3px;
+}
+
+@keyframes preloaderFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preloader-logo { animation: none; }
+    #preloader { transition: none; }
 }

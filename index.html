@@ -10,9 +10,15 @@
   <link rel="preload" href="assets/design/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="design.css">
-  <script src="script.js" defer></script>
+  
 </head>
 <body>
+  <div id="preloader" role="status" aria-live="polite">
+  <img class="preloader-logo" src="assets/design/Logo_Smea_PNG_Fiks.png" alt="Logo SMK Negeri 1 Bondowoso">
+  <div class="preloader-bar"><span></span></div>
+  <p class="preloader-text">Memuat... 0%</p>
+</div>
+<noscript><style>#preloader{display:none}</style></noscript>
   <a class="skip-link" href="#utama">Langsung ke konten</a>
   <header class="site-header">
     <a class="brand" href="#beranda" aria-label="SPMB SMAKENSA, beranda">
@@ -92,6 +98,25 @@
     <section class="closing section" aria-labelledby="closing-title"><div class="cta"><h2 id="closing-title">"Siap Menjadi Bagian dari<br>Lulusan Unggul?"</h2><p>Hubungi kami di nomor call center kami</p><button class="button button-light" type="button" data-info="kontak">Selengkapnya</button></div></section>
   </main>
   <footer class="site-footer"><p>SPMB SMAKENSA 2026</p><small>© 2026 All Rights Reserved.</small><img class="footer-spark" src="assets/design/Icon (Timeline SPMB Section).png" alt=""></footer>
+      <div class="lomba-strip reveal delay-1">
+      <p class="lomba-strip-label">Presented by :</p>
+      <div class="lomba-strip-wrap">
+        <div class="lomba-main-logo">
+          <img src="assets/1. LOGO JHIC 2.0.png" alt="JHIC 2.0" title="Jagoan Hosting Innovation Competition 2026"
+            class="logo-jhic" loading="lazy">
+        </div>
+        <div class="lomba-divider" aria-hidden="true"></div>
+        <div class="lomba-supporters">
+          <img src="assets/2. Logo Jagoan Hosting.png" alt="Jagoan Hosting" title="Jagoan Hosting" loading="lazy">
+          <img src="assets/3. KOMDIGI.png" alt="KOMDIGI" title="Kementerian Komunikasi dan Digital RI"
+            loading="lazy">
+          <img src="assets/4. Garuda Spark Full Color.png" alt="Garuda Spark" title="Garuda Spark Innovation Hub"
+            loading="lazy">
+          <img src="assets/5. LOGO NGALUP.png" alt="Ngalup.co" title="Ngalup.co" loading="lazy">
+        </div>
+      </div>
+    </div>
   <dialog id="info-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="Tutup informasi">×</button><span class="dialog-label">SPMB SMAKENSA</span><h2 id="dialog-title"></h2><div id="dialog-content"></div><button class="button dialog-done" type="button">Mengerti</button></dialog>
+  <script src="script.js" defer></script>
 </body>
 </html>
