@@ -5,20 +5,20 @@
 const SITE_CONFIG = { portalUrl: "", callCenter: "" };
 
 const iconFiles = {
-  shield: "Circle-Check Icon.png",
-  code: "Rekayasa Perangkat Lunak Icon.png",
-  wifi: "Teknik Komputer dan Jaringan Icon.png",
-  palette: "Desain Komunikasi Visual Icon.png",
-  calculator: "Akutansi Icon.png",
-  case: "Manajemen Perkantoran Icon.png",
-  bag: "Bisnis Digital Icon.png",
-  video: "Produksi Siaran Televisi Icon.png",
-  money: "Layanan Perbankan Icon.png",
-  monitor: "Laboratorium Komputer Icon.png",
-  books: "Perpustakaan Icon.png",
-  wireless: "Wifi Icon.png",
-  moon: "Masjid Icon.png",
-  room: "Ruang Kelas Icon.png"
+  shield: "Circle-Check Icon.webp",
+  code: "Rekayasa Perangkat Lunak Icon.webp",
+  wifi: "Teknik Komputer dan Jaringan Icon.webp",
+  palette: "Desain Komunikasi Visual Icon.webp",
+  calculator: "Akutansi Icon.webp",
+  case: "Manajemen Perkantoran Icon.webp",
+  bag: "Bisnis Digital Icon.webp",
+  video: "Produksi Siaran Televisi Icon.webp",
+  money: "Layanan Perbankan Icon.webp",
+  monitor: "Laboratorium Komputer Icon.webp",
+  books: "Perpustakaan Icon.webp",
+  wireless: "Wifi Icon.webp",
+  moon: "Masjid Icon.webp",
+  room: "Ruang Kelas Icon.webp"
 };
 const icon = name => `<img class="asset-icon" src="assets/design/${iconFiles[name]}" alt="" aria-hidden="true">`;
 
@@ -142,31 +142,31 @@ dialog.addEventListener("click", event => {
 // Posisi awal diukur dari prototype; setiap poster menempati slot berikutnya.
 const posterItems = [
   {
-    "file": "Lomba Sketsa Rancangan Layangan Sikep Tingkat Nasional yang diselenggarakan oleh Himadipsi ISI SURAKARTA 1.png",
+    "file": "Lomba Sketsa Rancangan Layangan Sikep Tingkat Nasional yang diselenggarakan oleh Himadipsi ISI SURAKARTA 1.webp",
     "title": "Lomba Sketsa Rancangan Layangan Sikep Tingkat Nasional yang diselenggarakan oleh Himadipsi ISI SURAKARTA"
   },
   {
-    "file": "Juara 2 Karate KEJURPROV FORKI Jawa Timur 2026 di Malang.(1) 1.png",
+    "file": "Juara 2 Karate KEJURPROV FORKI Jawa Timur 2026 di Malang.(1) 1.webp",
     "title": "Juara 2 Karate KEJURPROV FORKI Jawa Timur 2026 di Malang"
   },
   {
-    "file": "Juara 1 Lomba Orasi Dalam Rangka Harlah PMII Ke-66 1.png",
+    "file": "Juara 1 Lomba Orasi Dalam Rangka Harlah PMII Ke-66 1.webp",
     "title": "Juara 1 Lomba Orasi Dalam Rangka Harlah PMII Ke-66"
   },
   {
-    "file": "Juara 1 Lomba Kebersihan Sekolah Program ASRI 1.png",
+    "file": "Juara 1 Lomba Kebersihan Sekolah Program ASRI 1.webp",
     "title": "Juara 1 Lomba Kebersihan Sekolah Program ASRI"
   },
   {
-    "file": "Juara Harapan II Katagori Putri Lomba Gerak Jalan Pelajar 1.png",
+    "file": "Juara Harapan II Katagori Putri Lomba Gerak Jalan Pelajar 1.webp",
     "title": "Juara Harapan II Katagori Putri Lomba Gerak Jalan Pelajar"
   },
   {
-    "file": "Voli Smakensa meraih Juara 1 pada kegiatan Gebyar Olahraga Siswa SMK seKabupaten Bondowoso 1.png",
+    "file": "Voli Smakensa meraih Juara 1 pada kegiatan Gebyar Olahraga Siswa SMK seKabupaten Bondowoso 1.webp",
     "title": "Voli Smakensa meraih Juara 1 pada kegiatan Gebyar Olahraga Siswa SMK seKabupaten Bondowoso"
   },
   {
-    "file": "Telah lolos Seleksi Paskibra Kabupaten Bondowoso 1.png",
+    "file": "Telah lolos Seleksi Paskibra Kabupaten Bondowoso 1.webp",
     "title": "Telah lolos Seleksi Paskibra Kabupaten Bondowoso"
   }
 ];

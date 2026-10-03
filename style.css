@@ -833,7 +833,7 @@ a.button {
     top: 28px;
     width: 72px;
     height: 72px;
-    background: url("assets/player-track-next.png") center/contain no-repeat;
+    background: url("assets/player-track-next.webp") center/contain no-repeat;
     filter: invert(64%) sepia(99%) saturate(2692%) hue-rotate(359deg) brightness(105%) contrast(105%);
 }
 

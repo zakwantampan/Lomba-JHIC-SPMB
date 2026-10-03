@@ -1,4 +1,4 @@
-/* Aset dan warna mengikuti LandingPage-SPMB.png. Semua file tersedia lokal. */
+/* Aset dan warna mengikuti LandingPage-SPMB.webp. Semua file tersedia lokal. */
 @font-face {
   font-family: "Plus Jakarta Sans";
   src: url("assets/design/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
@@ -46,8 +46,8 @@ body { font-family: "Plus Jakarta Sans", sans-serif; }
 .facility-card > p:last-child { font-size: 17px; }
 
 /* Ornamen asli di atas bidang putih dan abu-abu sesuai prototype. */
-.bubbles:before { background: url("assets/design/Ellipse Kuning.png") center / contain no-repeat; }
-.bubbles:after { background: url("assets/design/Ellipse Oren.png") center / contain no-repeat; }
+.bubbles:before { background: url("assets/design/Ellipse Kuning.webp") center / contain no-repeat; }
+.bubbles:after { background: url("assets/design/Ellipse Oren.webp") center / contain no-repeat; }
 .line-spark { width: 127px; height: 131px; top: 10px; right: 3%; transform: none; }
 .program-arrow { width: 120px; height: 128px; top: 660px; left: -5px; transform: none; text-shadow: none; }
 .pills { width: 100px; height: 109px; transform: none; right: 3%; bottom: 87px; }
@@ -57,8 +57,8 @@ body { font-family: "Plus Jakarta Sans", sans-serif; }
 .footer-spark { position: absolute; right: 2px; bottom: 0; width: 74px; height: 85px; }
 .faq details:before { content: none; }
 .faq-panel { overflow: hidden; }
-.faq-triangle { position: absolute; width: 72px; height: 72px; left: -94px; top: 28px; pointer-events: none; background: url("assets/design/Triangle(Jurusan Section).png") center / contain no-repeat; transform: rotate(50deg); }
-.chevron { width: 33px; height: 33px; border: 0; transform: none; background: url("assets/design/Dropdown FAQ.png") center / contain no-repeat; }
+.faq-triangle { position: absolute; width: 72px; height: 72px; left: -94px; top: 28px; pointer-events: none; background: url("assets/design/Triangle(Jurusan Section).webp") center / contain no-repeat; transform: rotate(50deg); }
+.chevron { width: 33px; height: 33px; border: 0; transform: none; background: url("assets/design/Dropdown FAQ.webp") center / contain no-repeat; }
 .faq details[open] .chevron { transform: rotate(180deg); }
 .cta { background: radial-gradient(ellipse at center, #ff9b23 0%, #ffaf4d 90%); }
 
@@ -202,7 +202,7 @@ html { scroll-padding-top: 120px; }
 .digital .bubbles-right { top: 40px; right: -10px; }
 .site-header { height: 108px; padding-inline: 28px; }
 .brand { font-size: 25px; }
-.brand strong:before { width: 178px; height: 99px; top: -47px; border-radius: 0; background: url("assets/design/Ellipse In Navbar.png") center / contain no-repeat; }
+.brand strong:before { width: 178px; height: 99px; top: -47px; border-radius: 0; background: url("assets/design/Ellipse In Navbar.webp") center / contain no-repeat; }
 .nav-links a { font-size: 17px; }
 .nav-links { padding: 17px 28px; gap: 28px; }
 .login-button { font-size: 20px; min-height: 50px; }
